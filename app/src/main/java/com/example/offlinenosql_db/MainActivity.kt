@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,11 +26,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
 
                     val userBox = ObjectBox.store.boxFor(User::class.java)
-                    val user = User(name = "Tina")
-                    userBox.put(user)
+                    val insertUsers = listOf(
+                        User(name = "Tina"),
+                        User(name = "Dina"),
+                        User(name = "Wina")
+                    )
+
+                    userBox.put(insertUsers)
+                    val users = userBox.all.toList()
+                    LazyColumn() {
+                        item {
+                            Greeting("Android")
+                        }
+                        items(users) { user ->
+                            Text(text = user.name ?: "")
+                        }
+                    }
                 }
             }
         }
