@@ -16,8 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.offlinenosql_db.data.local.entities.Item
-import com.example.offlinenosql_db.data.local.entities.User
+import com.example.offlinenosql_db.data.local.entities.RealmItem
+import com.example.offlinenosql_db.data.local.entities.ObjectBoxItem
 import com.example.offlinenosql_db.ui.theme.OfflineNoSQLDBTheme
 import com.example.offlinenosql_db.utils.ObjectBox
 import com.example.offlinenosql_db.utils.RealmDB.realm
@@ -36,38 +36,37 @@ class MainActivity : ComponentActivity() {
                 ) {
 
 
-                    val userBox = ObjectBox.store.boxFor(User::class.java)
-                    val insertUsers = listOf(
-                        User(name = "Tina"),
-                        User(name = "Dina"),
-                        User(name = "Wina")
+                    val objectBoxItem = ObjectBox.store.boxFor(ObjectBoxItem::class.java)
+                    val insertObjectBoxItems = listOf(
+                        ObjectBoxItem(name = "Tina"),
+                        ObjectBoxItem(name = "Dina"),
+                        ObjectBoxItem(name = "Wina")
                     )
-                    userBox.put(insertUsers)
-                    val users = userBox.all.toList()
+                    objectBoxItem.put(insertObjectBoxItems)
+                    val objectBoxItems = objectBoxItem.all.toList()
 
                     /// RealM
                     realm.writeBlocking {
-                        copyToRealm(Item().apply {
-                            summary = "Do the laundry"
-                            isComplete = false
+                        copyToRealm(RealmItem().apply {
+                            name = "Do the laundry"
                         })
                     }
                     // all items in the realm
-                    val items: RealmResults<Item> = realm.query<Item>().find()
+                    val realmItems: RealmResults<RealmItem> = realm.query<RealmItem>().find()
 
                     LazyColumn() {
                         item {
                             Greeting("ObjectBox")
                         }
-                        items(users) { user ->
-                            Text(text = user.name ?: "")
+                        items(objectBoxItems) { item ->
+                            Text(text = item.name ?: "")
                         }
                         item {
                             Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
                             Greeting("Realm")
                         }
-                        items(items) { item ->
-                            Text(text = item.summary ?: "")
+                        items(realmItems) { item ->
+                            Text(text = item.name ?: "")
                         }
                     }
                 }

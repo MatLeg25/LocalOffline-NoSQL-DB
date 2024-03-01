@@ -4,8 +4,9 @@ import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 
 @Entity
-data class User(
+data class ObjectBoxItem(
         @Id
         var id: Long = 0,
-        var name: String? = null
+        var name: String? = null,
+        var isComplete: Boolean = false
 )

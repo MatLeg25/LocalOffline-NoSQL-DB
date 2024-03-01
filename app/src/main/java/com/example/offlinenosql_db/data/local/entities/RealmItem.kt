@@ -5,13 +5,9 @@ import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 import org.mongodb.kbson.ObjectId
 
-class Item() : RealmObject {
+class RealmItem() : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
+    var name: String = ""
     var isComplete: Boolean = false
-    var summary: String = ""
-    var owner_id: String = ""
-    constructor(ownerId: String = "") : this() {
-        owner_id = ownerId
-    }
 }
