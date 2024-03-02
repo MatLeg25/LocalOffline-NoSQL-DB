@@ -19,11 +19,12 @@ import androidx.compose.ui.unit.dp
 import com.example.offlinenosql_db.data.local.entities.RealmPerson
 import com.example.offlinenosql_db.data.local.entities.ObjectBoxPerson
 import com.example.offlinenosql_db.data.local.entities.Address
-import com.example.offlinenosql_db.data.local.entities.Details
+import com.example.offlinenosql_db.data.local.entities.Detail
 import com.example.offlinenosql_db.ui.theme.OfflineNoSQLDBTheme
 import com.example.offlinenosql_db.utils.ObjectBox
 import com.example.offlinenosql_db.utils.RealmDB.realm
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.ext.toRealmDictionary
 import io.realm.kotlin.ext.toRealmList
 import io.realm.kotlin.query.RealmResults
 
@@ -55,10 +56,14 @@ class MainActivity : ComponentActivity() {
                             address = Address().apply {
                                 street = "Rydygiera"
                                 details = mutableListOf(
-                                    Details().apply { description = "a" },
-                                    Details().apply { description = "b" },
-                                    Details().apply { description = "c" }
+                                    Detail().apply { description = "a" },
+                                    Detail().apply { description = "b" },
+                                    Detail().apply { description = "c" }
                                 ).toRealmList()
+                                map = mapOf(
+                                    "a" to Detail().apply { description = "aa" },
+                                    "b" to Detail().apply { description = "bb" },
+                                ).toRealmDictionary()
                             }
                         })
                     }
