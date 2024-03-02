@@ -24,6 +24,7 @@ import com.example.offlinenosql_db.ui.theme.OfflineNoSQLDBTheme
 import com.example.offlinenosql_db.utils.ObjectBox
 import com.example.offlinenosql_db.utils.RealmDB.realm
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.ext.toRealmList
 import io.realm.kotlin.query.RealmResults
 
 class MainActivity : ComponentActivity() {
@@ -53,9 +54,11 @@ class MainActivity : ComponentActivity() {
                             name = "SOme item"
                             address = Address().apply {
                                 street = "Rydygiera"
-                                details = Details().apply {
-                                    description = "extra data"
-                                }
+                                details = mutableListOf(
+                                    Details().apply { description = "a" },
+                                    Details().apply { description = "b" },
+                                    Details().apply { description = "c" }
+                                ).toRealmList()
                             }
                         })
                     }
