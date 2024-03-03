@@ -18,8 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.offlinenosql_db.data.local.entities.RealmPerson
 import com.example.offlinenosql_db.data.local.entities.ObjectBoxPerson
-import com.example.offlinenosql_db.data.local.entities.Address
-import com.example.offlinenosql_db.data.local.entities.Detail
+import com.example.offlinenosql_db.data.local.entities.AddressRm
+import com.example.offlinenosql_db.data.local.entities.DetailRm
 import com.example.offlinenosql_db.ui.theme.OfflineNoSQLDBTheme
 import com.example.offlinenosql_db.utils.ObjectBox
 import com.example.offlinenosql_db.utils.RealmDB.realm
@@ -53,16 +53,16 @@ class MainActivity : ComponentActivity() {
                     realm.writeBlocking {
                         copyToRealm(RealmPerson().apply {
                             name = "SOme item"
-                            address = Address().apply {
+                            address = AddressRm().apply {
                                 street = "Rydygiera"
                                 details = mutableListOf(
-                                    Detail().apply { description = "a" },
-                                    Detail().apply { description = "b" },
-                                    Detail().apply { description = "c" }
+                                    DetailRm().apply { description = "a" },
+                                    DetailRm().apply { description = "b" },
+                                    DetailRm().apply { description = "c" }
                                 ).toRealmList()
                                 map = mapOf(
-                                    "a" to Detail().apply { description = "aa" },
-                                    "b" to Detail().apply { description = "bb" },
+                                    "a" to DetailRm().apply { description = "aa" },
+                                    "b" to DetailRm().apply { description = "bb" },
                                 ).toRealmDictionary()
                             }
                         })

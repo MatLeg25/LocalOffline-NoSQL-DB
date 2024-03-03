@@ -25,8 +25,8 @@ data class ObjectBoxPerson(
 }
 
 @Entity
-class AddressOB() : RealmObject {
+class AddressOB(
         @Id
-        var id: Long = 0
+        var id: Long = 0,
         var street: String = "Foo"
-}
+)
