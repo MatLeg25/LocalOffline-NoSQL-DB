@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "3:6526970585852865135",
-      "lastPropertyId": "2:5416817751119882339",
+      "lastPropertyId": "3:4077152756374585384",
       "name": "ObjectBoxPerson",
       "properties": [
         {
@@ -18,13 +18,40 @@
           "id": "2:5416817751119882339",
           "name": "name",
           "type": 9
+        },
+        {
+          "id": "3:4077152756374585384",
+          "name": "addressId",
+          "indexId": "1:7756647335258013852",
+          "type": 11,
+          "flags": 520,
+          "relationTarget": "AddressOB"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:9109505651066486301",
+      "lastPropertyId": "2:1170281836959449652",
+      "name": "AddressOB",
+      "properties": [
+        {
+          "id": "1:1228731780431823746",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1170281836959449652",
+          "name": "street",
+          "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "3:6526970585852865135",
-  "lastIndexId": "0:0",
+  "lastEntityId": "4:9109505651066486301",
+  "lastIndexId": "1:7756647335258013852",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
